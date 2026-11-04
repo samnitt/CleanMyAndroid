@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CleanMyAndroid — Battery Optimization & Telemetry Command Center</title>
+  <link rel="icon" type="image/png" href="CleanMyAndroid.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient background glow elements -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <img src="CleanMyAndroid.png" alt="CleanMyAndroid Logo" class="brand-logo-img">
+        <div>
+          <h1 class="title">CleanMyAndroid — Battery Neural Command Center</h1>
+          <p class="subtitle">Universal Android Diagnostic & Optimization Engine · OxygenOS · OriginOS · One UI · HyperOS</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="connection-status connected" id="connectionBadge">
+          <span class="status-dot"></span>
+          <span id="connectionText">Optimization Deployed</span>
+        </div>
+        <button class="btn btn-secondary" id="btnRefreshDiagnostics">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+          Sync Data
+        </button>
+      </div>
+    </header>
+
+    <!-- Top KPI Grid -->
+    <section class="kpi-grid">
+      <!-- Card 1: Learned Capacity Health -->
+      <div class="kpi-card card-health">
+        <div class="card-header">
+          <span class="kpi-label">ELECTROCHEMICAL HEALTH</span>
+          <span class="badge badge-accent">Learned</span>
+        </div>
+        <div class="capacity-gauge-container">
+          <div class="gauge-ring">
+            <svg viewBox="0 0 120 120" class="gauge-svg">
+              <circle cx="60" cy="60" r="50" class="gauge-bg"></circle>
+              <circle cx="60" cy="60" r="50" class="gauge-fill" style="stroke-dashoffset: 33.4;"></circle>
+            </svg>
+            <div class="gauge-center">
+              <span class="gauge-value">89.4%</span>
+              <span class="gauge-sub">RETENTION</span>
+            </div>
+          </div>
+          <div class="capacity-details">
+            <div class="detail-row">
+              <span class="text-muted">Learned Capacity:</span>
+              <span class="text-highlight">4,468 mAh</span>
+            </div>
+            <div class="detail-row">
+              <span class="text-muted">Design Rating:</span>
+              <span>5,000 mAh</span>
+            </div>
+            <div class="detail-row">
+              <span class="text-muted">Lifecycle Loss:</span>
+              <span class="text-warning">-532 mAh (~10.6%)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Standby Sleep Efficiency -->
+      <div class="kpi-card card-standby">
+        <div class="card-header">
+          <span class="kpi-label">STANDBY SLEEP EFFICIENCY</span>
+          <span class="badge badge-danger" id="efficiencyBadge">72.7% Baseline</span>
+        </div>
+        <div class="metric-display">
+          <div class="big-metric">
+            <span class="metric-num text-danger">3h 10m</span>
+            <span class="metric-unit">CPU Awake in Sleep</span>
+          </div>
+          <div class="drain-comparison">
+            <div class="comp-col">
+              <span class="comp-label">Baseline Drain</span>
+              <span class="comp-val text-danger">2.27% / hr</span>
+            </div>
+            <div class="comp-arrow">➔</div>
+            <div class="comp-col">
+              <span class="comp-label">Target Efficiency</span>
+              <span class="comp-val text-success">≤ 0.50% / hr</span>
+            </div>
+          </div>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar">
+            <div class="progress-fill fill-danger" style="width: 27.3%;"></div>
+          </div>
+          <div class="progress-labels">
+            <span>27.3% Awake (Wakelock Leak)</span>
+            <span>Target: &lt; 4%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Post-Update Compilation State -->
+      <div class="kpi-card card-dexopt">
+        <div class="card-header">
+          <span class="kpi-label">AOT COMPILATION ENGINE</span>
+          <span class="badge badge-success">Optimized</span>
+        </div>
+        <div class="metric-display">
+          <div class="big-metric">
+            <span class="metric-num text-success">276 / 276</span>
+            <span class="metric-unit">Packages Compiled</span>
+          </div>
+          <div class="dexopt-status-box">
+            <div class="status-item">
+              <span class="status-icon success-icon">✓</span>
+              <span>Bytecode compiled to <code>speed-profile</code></span>
+            </div>
+            <div class="status-item">
+              <span class="status-icon success-icon">✓</span>
+              <span>JIT Interpreter Spikes Eliminated</span>
+            </div>
+            <div class="status-item">
+              <span class="status-icon success-icon">✓</span>
+              <span>Thermal Cooling Active (~32°C Target)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Radio & Sensor Scanning Guard -->
+      <div class="kpi-card card-radios">
+        <div class="card-header">
+          <span class="kpi-label">RADIO & SENSOR HYGIENE</span>
+          <span class="badge badge-success">Secured</span>
+        </div>
+        <div class="toggles-summary">
+          <div class="toggle-pill active">
+            <span class="pill-dot"></span>
+            <span>Wi-Fi Scan: <strong>DISABLED (0)</strong></span>
+          </div>
+          <div class="toggle-pill active">
+            <span class="pill-dot"></span>
+            <span>BLE Scan: <strong>DISABLED (0)</strong></span>
+          </div>
+          <div class="toggle-pill active">
+            <span class="pill-dot"></span>
+            <span>Cellular on Wi-Fi: <strong>SLEEPING (0)</strong></span>
+          </div>
+          <div class="toggle-pill active">
+            <span class="pill-dot"></span>
+            <span>AOD Display: <strong>POWER SAVING</strong></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Analytics & Interactive Sandbox Section -->
+    <section class="main-grid">
+      <!-- Left Column: Wake Lock Telemetry & Live Inspector -->
+      <div class="panel panel-left">
+        <div class="panel-header">
+          <div class="panel-title-group">
+            <h2 class="panel-title">Standby Wake Lock Anatomy</h2>
+            <p class="panel-subtitle">Empirical breakdown of background processes that drained 1,178 mAh during sleep</p>
+          </div>
+          <div class="filter-pills">
+            <button class="pill active" data-filter="all">All</button>
+            <button class="pill" data-filter="system">System</button>
+            <button class="pill" data-filter="apps">Third-Party</button>
+          </div>
+        </div>
+
+        <div class="wakelock-list" id="wakelockList">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Right Column: Innovative Lab & Live Power Profiles -->
+      <div class="panel panel-right">
+        <div class="panel-header">
+          <div class="panel-title-group">
+            <h2 class="panel-title">Interactive Optimization Sandbox</h2>
+            <p class="panel-subtitle">Simulate & evaluate innovative tuning strategies before committing</p>
+          </div>
+        </div>
+
+        <!-- Strategy Tabs -->
+        <div class="sandbox-tabs">
+          <button class="tab-btn active" data-tab="doze">⚡ Ultra Doze Profile</button>
+          <button class="tab-btn" data-tab="buckets">📦 App Standby Buckets</button>
+          <button class="tab-btn" data-tab="refresh">🖥️ Refresh Rate Governor</button>
+        </div>
+
+        <!-- Tab 1: Ultra Doze Profile -->
+        <div class="tab-content active" id="tab-doze">
+          <div class="strategy-banner">
+            <div class="strategy-icon">🚀</div>
+            <div>
+              <h3>Fast-Entering Deep Doze</h3>
+              <p>OxygenOS 15 normally waits <strong>30–60 minutes</strong> of stillness before entering Deep Sleep. This tuning drops the trigger window to <strong>2 minutes</strong>, cutting daytime pocket idle drain by up to <strong>45%</strong>.</p>
+            </div>
+          </div>
+
+          <div class="doze-comparison-table">
+            <div class="doze-row header-row">
+              <span>Parameter</span>
+              <span>OxygenOS Default</span>
+              <span>Ultra Doze Profile</span>
+            </div>
+            <div class="doze-row">
+              <span>Inactive Timeout (to sleep)</span>
+              <span class="text-muted">1,800,000 ms (30 min)</span>
+              <span class="text-highlight">60,000 ms (1 min)</span>
+            </div>
+            <div class="doze-row">
+              <span>Sensing Timeout</span>
+              <span class="text-muted">300,000 ms (5 min)</span>
+              <span class="text-highlight">0 ms (Instant)</span>
+            </div>
+            <div class="doze-row">
+              <span>Locating Timeout</span>
+              <span class="text-muted">30,000 ms (30 sec)</span>
+              <span class="text-highlight">0 ms (Skip)</span>
+            </div>
+            <div class="doze-row">
+              <span>Deep Doze Frequency</span>
+              <span class="text-danger">Rarely in daytime</span>
+              <span class="text-success">Every pocket session</span>
+            </div>
+          </div>
+
+          <div class="code-block-wrapper">
+            <div class="code-header">
+              <span>PROPOSED COMMAND (REVIEW-ONLY)</span>
+              <button class="copy-btn" onclick="copyCode('doze-cmd')">Copy</button>
+            </div>
+            <pre><code id="doze-cmd">adb shell settings put global device_idle_constants inactive_to=60000,sensing_to=0,locating_to=0,motion_inactive_to=0,idle_after_inactive_to=0</code></pre>
+          </div>
+          <div class="code-block-wrapper">
+            <div class="code-header">
+              <span>1-TO-1 ROLLBACK COMMAND</span>
+              <button class="copy-btn" onclick="copyCode('doze-rollback')">Copy</button>
+            </div>
+            <pre><code id="doze-rollback">adb shell settings delete global device_idle_constants</code></pre>
+          </div>
+        </div>
+
+        <!-- Tab 2: App Standby Buckets -->
+        <div class="tab-content" id="tab-buckets">
+          <div class="strategy-banner">
+            <div class="strategy-icon">📦</div>
+            <div>
+              <h3>Standby Bucket Deprioritization</h3>
+              <p>Move heavy social, news, and shopping apps (e.g. X/Twitter, Amazon) to the <code>RESTRICTED</code> bucket. They work 100% normally when opened, but are strictly prohibited from waking up your phone in the background.</p>
+            </div>
+          </div>
+
+          <div class="bucket-selector-list">
+            <div class="bucket-item">
+              <div class="bucket-info">
+                <strong>X / Twitter (`com.twitter.android`)</strong>
+                <span class="text-muted">Consumed 373 mAh in baseline · Heavy background sync</span>
+              </div>
+              <span class="badge badge-warning">Target: RESTRICTED</span>
+            </div>
+            <div class="bucket-item">
+              <div class="bucket-info">
+                <strong>Amazon Shopping (`in.amazon.mShop.android.shopping`)</strong>
+                <span class="text-muted">Frequent marketing alarms and wake locks</span>
+              </div>
+              <span class="badge badge-warning">Target: RARE</span>
+            </div>
+            <div class="bucket-item protected-item">
+              <div class="bucket-info">
+                <strong>Banking & UPI (PhonePe, GPay, Paytm, Banks)</strong>
+                <span class="text-muted">Protected whitelist · Preserved in ACTIVE/WORKING_SET</span>
+              </div>
+              <span class="badge badge-success">PROTECTED</span>
+            </div>
+          </div>
+
+          <div class="code-block-wrapper">
+            <div class="code-header">
+              <span>RESTRICT NON-ESSENTIAL APP ADB COMMAND</span>
+              <button class="copy-btn" onclick="copyCode('bucket-cmd')">Copy</button>
+            </div>
+            <pre><code id="bucket-cmd">adb shell am set-standby-bucket com.twitter.android restricted</code></pre>
+          </div>
+          <div class="code-block-wrapper">
+            <div class="code-header">
+              <span>ROLLBACK COMMAND</span>
+              <button class="copy-btn" onclick="copyCode('bucket-rollback')">Copy</button>
+            </div>
+            <pre><code id="bucket-rollback">adb shell am set-standby-bucket com.twitter.android active</code></pre>
+          </div>
+        </div>
+
+        <!-- Tab 3: Refresh Rate Governor -->
+        <div class="tab-content" id="tab-refresh">
+          <div class="strategy-banner">
+            <div class="strategy-icon">🖥️</div>
+            <div>
+              <h3>Display Power Budget Tuning</h3>
+              <p>The 6.7" Fluid AMOLED panel accounts for <strong>59% (1,698 mAh)</strong> of all active energy consumption. Locking to 60Hz or capping max refresh saves <strong>20% to 30%</strong> screen-on battery during long reading or browsing sessions.</p>
+            </div>
+          </div>
+
+          <div class="stat-highlight-box">
+            <div class="stat-col">
+              <span class="stat-label">Current Configuration</span>
+              <span class="stat-val text-highlight">60.0 Hz Fixed</span>
+            </div>
+            <div class="stat-col">
+              <span class="stat-label">Active Screen Drain Rate</span>
+              <span class="stat-val text-warning">13.1% / hr</span>
+            </div>
+            <div class="stat-col">
+              <span class="stat-label">Estimated 120Hz Drain</span>
+              <span class="stat-val text-danger">~17.5% / hr</span>
+            </div>
+          </div>
+          <p class="text-muted" style="margin-top: 14px; font-size: 13px;">
+            💡 <em>Current setting is already running at 60Hz. If you ever switch back to 120Hz in OxygenOS settings, screen-on drain will increase by roughly ~4% per hour.</em>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span>Antigravity Autonomous Battery Engine · Zero-Root Architecture · 100% Reversible</span>
+      <div class="footer-links">
+        <a href="file:///Users/shriaravinthanm/Desktop/oneplus10r/reports/battery_optimization_agent_report.md" target="_blank">Full Report Dossier</a>
+        <a href="file:///Users/shriaravinthanm/Desktop/oneplus10r/reports/proposed_remediations.md" target="_blank">Review Commands</a>
+        <a href="file:///Users/shriaravinthanm/Desktop/oneplus10r/reports/rollback_commands.md" target="_blank">Rollback Matrix</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

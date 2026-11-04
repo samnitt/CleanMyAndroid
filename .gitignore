@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.DS_Store
+*.log
+diagnostics/raw/
+diagnostics/parsed/
+*.swp
+.idea/
+.vscode/
+

@@ -1,0 +1,35 @@
+{
+  "oem": "OnePlus / OPPO",
+  "os_flavor": "OxygenOS / ColorOS",
+  "safe_to_freeze": [
+    {
+      "package": "com.oplus.logkit",
+      "description": "Internal OEM debug/crash logging daemon writing continuous trace logs to internal storage."
+    },
+    {
+      "package": "com.oplus.accessory",
+      "description": "Quick Device Connect scanning continuously for nearby IoT devices and buds pop-ups."
+    }
+  ],
+  "recommended_settings": [
+    {
+      "type": "global",
+      "key": "wifi_scan_always_enabled",
+      "value": "0",
+      "description": "Disables background Wi-Fi radio cycling when Wi-Fi is toggled off."
+    },
+    {
+      "type": "global",
+      "key": "ble_scan_always_enabled",
+      "value": "0",
+      "description": "Disables background Bluetooth LE beacon cycling when Bluetooth is off."
+    },
+    {
+      "type": "global",
+      "key": "wifi_scan_throttle_enabled",
+      "value": "1",
+      "description": "Enforces rate limiting on third-party Wi-Fi scans."
+    }
+  ]
+}
+

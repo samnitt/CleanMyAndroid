@@ -1,0 +1,81 @@
+{
+  "description": "Universal whitelist of critical packages, subsystems, banking apps, and services that must NEVER be modified, disabled, or restricted.",
+  "categories": {
+    "play_integrity_and_google_core": [
+      "com.google.android.gms",
+      "com.android.vending",
+      "com.google.android.gsf",
+      "com.google.android.gms.setup",
+      "com.google.android.onetimeinitializer",
+      "com.google.android.ext.services",
+      "com.google.android.ext.shared"
+    ],
+    "telephony_and_emergency": [
+      "com.android.phone",
+      "com.android.server.telecom",
+      "com.android.emergency",
+      "com.oplus.sos",
+      "com.oplus.telephony",
+      "com.mediatek.ims",
+      "com.mediatek.telephony",
+      "com.qualcomm.qti.telephony",
+      "com.android.providers.telephony",
+      "com.android.cellbroadcastreceiver"
+    ],
+    "biometrics_and_security": [
+      "com.oplus.biometrics",
+      "com.vivo.fingerprintui",
+      "com.fingerprints.service",
+      "com.android.server.biometrics",
+      "com.android.keychain",
+      "com.oplus.keystore",
+      "android.hardware.biometrics",
+      "com.android.certinstaller"
+    ],
+    "connectivity_and_radios": [
+      "com.android.bluetooth",
+      "com.android.nfc",
+      "com.android.wifi.resources",
+      "com.android.networkstack",
+      "com.android.networkstack.tethering",
+      "com.oplus.location",
+      "com.google.android.location"
+    ],
+    "drm_and_media": [
+      "android.hardware.drm",
+      "com.widevine.drm",
+      "com.oplus.drm",
+      "com.android.providers.media.module"
+    ],
+    "system_updates_and_integrity": [
+      "com.oplus.ota",
+      "com.oplus.romupdate",
+      "com.vivo.upgradeservice",
+      "com.android.dynsystem",
+      "com.android.packageinstaller"
+    ],
+    "banking_and_financial": [
+      "in.org.npci.upiapp",
+      "com.phonepe.app",
+      "com.google.android.apps.nbu.paisa.user",
+      "net.one97.paytm",
+      "com.axis.mobile",
+      "com.msf.kbank.mobile",
+      "com.csam.icici.bank.imobile",
+      "com.sbi.lotusintouch",
+      "com.hdfc.bank",
+      "com.hdfcbank.android.now",
+      "com.kotak811mobilebankingapp.instantsavingsupiscanandpayrecharge",
+      "com.ge.capital.konysbiapp",
+      "com.tmb.mbank",
+      "com.IndianBank.IndOASIS",
+      "com.iexceed.ib.digitalbankingprod",
+      "com.dreamplug.androidapp"
+    ],
+    "business_and_seller": [
+      "com.amazon.sellermobile.android",
+      "in.amazon.mShop.android.shopping"
+    ]
+  }
+}
+
