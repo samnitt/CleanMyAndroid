@@ -65,7 +65,7 @@ If you prefer running it manually without an AI assistant:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/CleanMyAndroid.git
+git clone https://github.com/samnitt/CleanMyAndroid.git
 cd CleanMyAndroid
 
 # Run the zero-dependency interactive CLI
