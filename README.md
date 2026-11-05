@@ -103,6 +103,21 @@ python3 dashboard/serve.py
 
 ---
 
+## 📅 The 3-to-5 Day Longitudinal Audit Protocol
+
+Battery electrochemical stabilization, fuel gauge recalibration, and Android ART execution profiles require **3 to 5 days of normal daily use** to fully stabilize:
+
+```
+Day 0 (Baseline & Apply) ──> Day 1 (Overnight Standby) ──> Day 3 (ART & Buckets) ──> Day 5 (Final Recalibration)
+```
+
+1. **Day 0 (Intervention Day):** Capture baseline diagnostics, apply AOT compilation, Ultra Doze, and Radio hygiene. Reset battery stats (`dumpsys batterystats --reset`).
+2. **Day 1 (Overnight Standby Check):** Plug in for 2 minutes in the morning. Audit overnight screen-off wakefulness (target: $\le 10\%$, down from $27\%$). Verify calls, WhatsApp, and alarm clock functioned on time.
+3. **Day 3 (Mid-Week ART & Bucket Audit):** Verify that apps placed in bucket 45 (`restricted`) have not delayed critical alerts and that compiled bytecode remains in native machine code (`status=speed-profile`).
+4. **Day 5 (Fuel Gauge Recalibration):** Measure final learned capacity. As observed in empirical testing, the fuel gauge recalibrates upward (+50 to +100 mAh) as cleaner voltage curves eliminate false dips. Export final before-and-after comparison report.
+
+---
+
 ## 🛡️ Safety & Preservation Matrix
 
 CleanMyAndroid is built on a strict **Safety-First Whitelist Architecture** ([`config/protected_packages.json`](config/protected_packages.json)):
