@@ -47,40 +47,57 @@ Forum myths tell you to *"clear recent apps"* or *"drain battery to 0% to calibr
 
 ---
 
-## 🛠️ How It Works (Choose Your Mode)
+## 🤖 The Agentic Architecture
 
-CleanMyAndroid is engineered to be operated in **two flexible ways**:
+Traditional Android debloating scripts are notoriously brittle: they blindly execute hardcoded lists of package disable commands, causing boot loops, breaking banking apps, or failing across different OEM skins.
 
-### Mode A: 🤖 Agentic AI Mode (Recommended)
-If you use an AI coding agent with shell access (such as **Antigravity**, **Claude Code**, **Cursor**, or **Aider**):
+**CleanMyAndroid takes an AI-native approach:**
+You pair an **AI Coding Agent** with shell access (such as **Antigravity**, **Claude Code**, **Cursor**, **Aider**, or **Gemini CLI**) with your connected device. The agent reads the system specification in [`AGENT_PROMPT.md`](AGENT_PROMPT.md) and acts as an autonomous battery engineer:
 
-1. Connect your Android phone via USB or Wireless Debugging (`adb devices`).
-2. Point your AI agent to the repository or copy [`AGENT_PROMPT.md`](AGENT_PROMPT.md).
-3. Simply prompt:  
-   > *"Run CleanMyAndroid in read-only diagnostic mode, analyze my battery health, and propose single-variable optimizations."*
-4. The AI agent will parse your `dumpsys batterystats`, score power consumers, verify against the safety whitelist, and present review-only recommendations before executing.
-
-### Mode B: 💻 Standalone 1-Click Interactive CLI
-If you prefer running it manually without an AI assistant:
-
-```bash
-# Clone the repository
-git clone https://github.com/samnitt/CleanMyAndroid.git
-cd CleanMyAndroid
-
-# Run the zero-dependency interactive CLI
-python3 run.py
+```
+                  ┌─────────────────────────────────────────┐
+                  │          AI CODING AGENT                │
+                  │ (Antigravity · Claude Code · Cursor)    │
+                  └────────────────────┬────────────────────┘
+                                       │ Reads AGENT_PROMPT.md
+                                       ▼
+                  ┌─────────────────────────────────────────┐
+                  │        CleanMyAndroid Engine            │
+                  │  • Whitelist Validator (Banking/Core)   │
+                  │  • Thermal & Electrochemical Auditor    │
+                  │  • ART Dexopt Compiler (Top Drainers)   │
+                  │  • Ultra Doze (60s Pocket Deep Sleep)   │
+                  │  • Radio Beacon & Telemetry Hygiene     │
+                  └────────────────────┬────────────────────┘
+                                       │ Non-Root ADB (user 0)
+                                       ▼
+                  ┌─────────────────────────────────────────┐
+                  │       Connected Android Device          │
+                  │    (USB or Wireless Debugging)          │
+                  └─────────────────────────────────────────┘
 ```
 
-<p align="center">
-  <img src="assets/cli_preview.png" alt="CleanMyAndroid Interactive CLI" width="700">
-</p>
+### 🚀 Quick Start (In 3 Simple Steps)
 
-The interactive terminal lets you:
-* `[1]` **Diagnose Battery & Hardware:** Instantly inspect SoC, temperature, and true learned chemical capacity.
-* `[2]` **Apply Safe 1-Click Optimizations:** Pre-compile bytecode (`bg-dexopt-job`), configure radio hygiene, and enable the Ultra Doze fast pocket sleep profile.
-* `[3]` **Launch Visual Telemetry Dashboard:** Opens your local Web UI.
-* `[4]` **Restore Factory Defaults:** 1-click guaranteed rollback.
+1. **Connect Your Phone:**
+   Connect via USB or Wireless ADB (`adb devices -l`). *(See [Connection Guide](AGENT_PROMPT.md#2-comprehensive-device-connection-protocol) for wireless pairing).*
+
+2. **Clone the Repo:**
+   ```bash
+   git clone https://github.com/samnitt/CleanMyAndroid.git
+   cd CleanMyAndroid
+   ```
+
+3. **Prompt Your AI Agent:**
+   Open this folder in your AI coding agent (Antigravity, Claude Code, Cursor, Aider) and simply prompt:
+   > *"Run CleanMyAndroid in read-only diagnostic mode, analyze my battery health, and propose single-variable optimizations."*
+
+The AI agent autonomously handles the rest:
+* Identifies your OEM skin (OxygenOS, OriginOS, One UI, HyperOS) and audits thermal headroom.
+* Parses `dumpsys batterystats` to rank wake lock loops and calculate physical electrochemical retention.
+* Pre-checks every proposed modification against [`config/protected_packages.json`](config/protected_packages.json) to ensure banking apps, optical biometrics, and Knox are 100% untouched.
+* Presents review-only recommendations for your explicit approval before executing.
+* Generates your live **Visual HTML Telemetry Dashboard** and guides you through the multi-day audit.
 
 ---
 
